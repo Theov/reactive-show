@@ -31,8 +31,6 @@ public class ReactiveApplicationClient {
 		};
 	}
 
-
-
 	public static void main(String[] args){
 		new SpringApplicationBuilder(ReactiveApplicationClient.class)
 				.properties(Collections.singletonMap("server.port", 8081))
