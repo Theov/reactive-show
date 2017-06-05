@@ -35,10 +35,15 @@ public class ReactiveApplicationClientTest {
         Mono<String> mono = Mono.just("Hello World !");
         mono.subscribe(System.out::println);
 
-        String[] arr = {"The", "quick", "brown", "fox", "jump", "over", "the", "lazy", "dog"};
+        String[] arr = {"The", "The", " ", "quick", "brown", "fox", "jump", "over", "the", "lazy", "dog"};
 
         Flux<String> flux = Flux.fromIterable(Arrays.asList(arr));
-        flux.subscribe(System.out::println);
+        flux
+                .distinct()
+                .filter(s -> !s.isEmpty())
+                .map(s -> s.concat(" "))
+                .reduce(String::concat)
+                .subscribe(System.out::println);
     }
 
 
